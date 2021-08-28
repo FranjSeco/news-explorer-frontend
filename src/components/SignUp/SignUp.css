@@ -1,0 +1,132 @@
+.signup__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+    color: #1A1B22;
+}
+
+.signup__email-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #2F71E5;
+}
+
+.signup__form-email {
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    padding: 10px 0;
+    width: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.signup__form-email:focus {
+    outline: none;
+}
+
+.signup__password-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #2F71E5;
+}
+
+.signup__form-password {
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 43px;
+    padding: 10px 0;
+    color: #cccccc;
+    width: 100%;
+}
+
+.signup__form-password:focus {
+    outline: none;
+}
+
+.signup__username-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #2F71E5;
+}
+
+.signup__form-username {
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    padding: 10px 0;
+    width: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.signup__form-username:focus {
+    outline: none;
+}
+
+.signup__text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000;
+}
+
+.signup__text_link {
+    color: #2F71E5;
+    text-decoration: none;
+}
+
+.signup__text_link:hover {
+    cursor: pointer;
+}
+
+.signup__submit {
+    width: 360px;
+    height: 50px;
+    background: #2F71E5;
+    border-radius: 100px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+
+@media (max-width: 320px) {
+    .signup__form-password {
+        margin-bottom: 173px;
+    }
+}
+
