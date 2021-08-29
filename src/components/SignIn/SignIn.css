@@ -33,6 +33,7 @@
 
 .signin__form-email:focus {
     outline: none;
+    border-bottom: 1px solid #000;
 }
 
 .signin__password-label {
@@ -60,6 +61,7 @@
 
 .signin__form-password:focus {
     outline: none;
+    border-bottom: 1px solid #000;
 }
 
 .signin__text {

@@ -33,6 +33,7 @@
 
 .signup__form-email:focus {
     outline: none;
+    border-bottom: 1px solid #000;
 }
 
 .signup__password-label {
@@ -60,6 +61,7 @@
 
 .signup__form-password:focus {
     outline: none;
+    border-bottom: 1px solid #000;
 }
 
 .signup__username-label {
@@ -88,6 +90,7 @@
 
 .signup__form-username:focus {
     outline: none;
+    border-bottom: 1px solid #000;
 }
 
 .signup__text {
