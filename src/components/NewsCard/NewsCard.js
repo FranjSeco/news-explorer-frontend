@@ -9,7 +9,7 @@ const NewsCards = () => {
   return (
         <div className='card'>
             <div className='card__cover-wrapper' >
-                <img className='card__image' src={'https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'} alt='cover' />
+                <img className='card__image' src={'https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'} alt='news cover image' />
 
                 {isLoggedIn
                 && <button className='card__button card__button-tag'>Nature</button>
