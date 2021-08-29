@@ -31,10 +31,10 @@ const Header = (props) => {
 
   return (
         <nav className={`header ${(isDisplayed) && 'header__fixed'}`}>
-            <div className={`header_border ${location.pathname === '/savednews' && 'header__border_black'} ${isDisplayed && 'header__border_displayed'}`}></div>
+            <div className={`header_border ${location.pathname === '/saved-news' && 'header__border_black'} ${isDisplayed && 'header__border_displayed'}`}></div>
             <div className='header__content-wrapper'>
                 <div className='header__title-wrapper'>
-                    <p className={`header__title ${location.pathname === '/savednews' && 'header__title_black'} ${isDisplayed && 'header__title_displayed'}`}>WorldNews</p>
+                    <p className={`header__title ${location.pathname === '/saved-news' && 'header__title_black'} ${isDisplayed && 'header__title_displayed'}`}>WorldNews</p>
                 </div>
 
                 {getWidth > 700
@@ -44,8 +44,8 @@ const Header = (props) => {
                   : <>
                         <div className='header__burguer-wrapper'>
                             <button className='header__burger' onClick={handleBurger}>
-                                <span className={`header__burger_${open} ${location.pathname === '/savednews' && 'header__burger_black'} ${isDisplayed && 'header__burger_displayed'}`}></span>
-                                <span className={`header__burger_${open} ${location.pathname === '/savednews' && 'header__burger_black'} ${isDisplayed && 'header__burger_displayed'}`}></span>
+                                <span className={`header__burger_${open} ${location.pathname === '/saved-news' && 'header__burger_black'} ${isDisplayed && 'header__burger_displayed'}`}></span>
+                                <span className={`header__burger_${open} ${location.pathname === '/saved-news' && 'header__burger_black'} ${isDisplayed && 'header__burger_displayed'}`}></span>
                             </button>
                         </div>
                         <Overlay isOpen={isDisplayed}>

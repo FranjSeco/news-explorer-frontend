@@ -13,7 +13,7 @@ const SignUp = (props) => (
             onClose={props.onClose}
         >
             <h2 className='signup__title'>Sign up</h2>
-            <label className='signup__email-label' for="email">Email </label>
+            <label className='signup__email-label' htmlFor="email">Email </label>
             <input
                 className='signup__form-email'
                 placeholder='Enter email'
@@ -30,7 +30,7 @@ const SignUp = (props) => (
                 id="name-input-error"
                 className="form-input-error" />
 
-            <label className='signup__password-label' for="password">Password</label>
+            <label className='signup__password-label' htmlFor="password">Password</label>
             <input
                 className='signup__form-password'
                 placeholder='Enter password'
@@ -44,7 +44,7 @@ const SignUp = (props) => (
                 >
             </input>
 
-            <label className='signup__username-label' for="username">Username</label>
+            <label className='signup__username-label' htmlFor="username">Username</label>
             <input
                 className='signup__form-username'
                 placeholder='Enter username'

@@ -115,7 +115,7 @@
 @media screen and (max-width: 500px) {
     .main__wrapper {
         max-width: 285px;
-        margin: 56px auto;
+        margin: 56px auto 32px auto;
         padding-top: 30px;
     }
 }

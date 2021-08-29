@@ -58,7 +58,7 @@ function App() {
           <About />
         </Route>
 
-        <Route path="/savednews" exact>
+        <Route path="/saved-news" exact>
           <Savednewsheader />
           <SavedNews />
         </Route>
