@@ -1,0 +1,107 @@
+.signin__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+    color: #1A1B22;
+}
+
+.signin__email-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #2F71E5;
+}
+
+.signin__form-email {
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.signin__form-email:focus {
+    outline: none;
+    border-bottom: 1px solid #000;
+}
+
+.signin__password-label {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #2F71E5;
+}
+
+.signin__form-password {
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 43px;
+    padding: 10px;
+    color: #cccccc;
+    width: 100%;
+}
+
+.signin__form-password:focus {
+    outline: none;
+    border-bottom: 1px solid #000;
+}
+
+.signin__text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000;
+}
+
+.signin__text_link {
+    color: #2F71E5;
+    text-decoration: none;
+    margin: 0;
+}
+
+.signin__text_link:hover {
+    cursor: pointer;
+}
+
+.signin__submit {
+    width: 360px;
+    height: 50px;
+    background: #2F71E5;
+    border-radius: 100px;
+    cursor: pointer;
+    border: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+
+@media (max-width: 320px) {
+    .login__form-password {
+        margin-bottom: 173px;
+    }
+}
+

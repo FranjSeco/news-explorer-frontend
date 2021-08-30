@@ -1,0 +1,121 @@
+.main {
+    width: 100%;
+    height: auto;
+}
+
+.main__background {
+    width: 100%;
+    height: 100%;
+    height: 576px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: url('../../images/georgia-de-lotz--UsJoNxLaNo-unsplash.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    z-index: -1;
+}
+
+.main__wrapper {
+    width: 100%;
+    max-width: 608px;
+    margin: 80px auto;
+    padding-top: 80px;
+}
+
+.main__title {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    line-height: 64px;
+    color: #FFFFFF;
+    margin: 0 0 32px 0;
+}
+
+.main__subtitle {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin: 0 0 88px 0;
+}
+
+.main__input-wrapper {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+    border-radius: 100px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .main__background {
+        height: 400px;
+    }
+    .main__wrapper {
+        max-width: 448px;
+        margin: 80px auto 48px auto;
+        padding-top: 40px;
+    }
+
+    .main__title {
+        font-size: 36px;
+        line-height: 40px;
+        margin: 0 0 16px 0;
+    }
+
+    .main__subtitle {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 0 48px 0;
+    }
+}
+
+
+
+
+@media screen and (max-width: 520px) {
+    .main__wrapper {
+        max-width: 285px;
+        margin: 30px auto;
+        padding-top: 80px;
+    }
+
+    .main__background {
+        height: 536px;
+    }
+
+    .main__title {
+        font-size: 36px;
+        line-height: 40px;
+    }
+
+    .main__subtitle {
+        font-size: 18px;
+        line-height: 24px;
+        margin: 0 0 122px 0;
+    }
+
+    .main__input-wrapper {
+        flex-direction: column;
+        height: 128px;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 500px) {
+    .main__wrapper {
+        max-width: 285px;
+        margin: 56px auto 32px auto;
+        padding-top: 30px;
+    }
+}

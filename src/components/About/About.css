@@ -1,0 +1,140 @@
+.about {
+    width: 100%;
+    max-width: 1440px;
+    height: 624px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    box-sizing: border-box;
+    background-color: #fff;
+    
+    padding: 80px 0;
+}
+
+.about__wrapper {
+    max-width: 1280px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+}
+
+.about__picture-wrapper {
+    width: 464px;
+    height: 464px;
+    margin-right: 56px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.about__picture {
+    border-radius: 1000px;
+    width: 464px;
+    height: 464px;
+}
+
+.about__info-wrapper {
+    width: 600px;
+}
+
+.about__title {
+    width: 100%;
+    font-family: "Roboto Slab";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 46px;
+    color: #1a1b22;
+    font-size: 40px;
+    line-height: 46px;
+    margin: 51px 0 24px 0;
+}
+
+.about__text {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #1a1b22;
+}
+
+@media screen and (max-width: 1130px) {
+    .about {
+        padding: 61px 40px;
+        height: 354px;
+    }
+    .about__picture-wrapper {
+    width: 232px;
+    height: 232px;
+    margin-right: 56px;
+    }
+
+    .about__picture {
+    border-radius: 1000px;
+    width: 232px;
+    height: 232px;
+    }
+
+    .about__title {
+    margin: 0 0 16px 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .about__picture-wrapper {
+        margin-right: 32px;
+    }
+
+    .about__text {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .about__title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .about__info-wrapper {
+        width: 400px;
+    }
+    
+}
+
+@media screen and (max-width: 700px) {
+    .about {
+        padding: 61px 40px;
+        height: 100%;
+    }
+    .about__wrapper {
+        flex-direction: column;
+    }
+
+    .about__picture-wrapper {
+        margin: 0 0 24px 0;
+        align-self: center;
+    }
+    .about__info-wrapper {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .about__info-wrapper {
+        width: 288px;
+    }
+    .about__title {
+        margin: 0 auto 16px auto;
+        font-size: 30px;
+        line-height: 40px;
+    }
+    
+    .about__text {
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: justify;
+    }
+}
