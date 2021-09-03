@@ -3,6 +3,8 @@ import React from 'react';
 import './App.css';
 
 import { Route, Switch } from 'react-router-dom';
+import newsApi from '../../utils/NewsApi';
+// import * as MainApi from '../../utils/MainApi'
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -17,9 +19,12 @@ import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
 import Successful from '../Successful/Successful';
 
-function App() {
+function App(props) {
   const [IsPopupOpen, setIsPopupOpen] = React.useState(false);
   const [signUpIsOpen, setSignUpIsOpen] = React.useState(false);
+
+  const [articles, setArticles] = React.useState({});
+  const [results, setResults] = React.useState(false);
 
   function handleOpenPopup() {
     setIsPopupOpen(true);
@@ -44,6 +49,27 @@ function App() {
     document.title = 'World News';
   }, []);
 
+  // DATE
+  const currentDate = '2021-09-03';
+  const sevenDays = '2021-08-28';
+
+  // API
+  function handleSearch(request) {
+    newsApi.getNews({
+      request,
+      sevenDaysAgo: sevenDays,
+      today: currentDate,
+    })
+      .then((res) => {
+        setResults(true);
+        setArticles(res);
+      });
+  }
+
+  // React.useEffect(() => {
+  //   setResults(true);
+  // }, [articles]);
+
   return (
     <div className="app">
 
@@ -53,8 +79,10 @@ function App() {
 
       <Switch>
         <Route path="/" exact>
-          <Main />
-          <Results />
+          <Main
+          onSearch={handleSearch}
+          />
+          {results ? <Results articlesData={articles}/> : ''}
           <About />
         </Route>
 

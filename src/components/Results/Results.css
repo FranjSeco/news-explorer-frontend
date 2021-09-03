@@ -25,6 +25,30 @@
     color: #1A1B22;
 }
 
+.results__loadmore-wrapper {
+    background: transparent;
+    width: 100%;
+    padding: 64px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.results__loadmore-button {
+    background: #E8E8E8;
+    border-radius: 80px;
+    width: 240px;
+    height: 56px;
+    margin: 0 auto;
+    border: none;
+    align-self: center;
+}
+
+.results__loadmore-button:hover {
+    cursor: pointer;
+}
+
+
 @media screen and (max-width: 1280px) {
     .results_title {
         max-width: 336px;
@@ -49,5 +73,9 @@
     .results_title {
         max-width: 288px;
         margin: 0 auto 58px auto;
+    }
+
+    .results__loadmore-button {
+        width: 288px;
     }
 }

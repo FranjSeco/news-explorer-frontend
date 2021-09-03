@@ -8,7 +8,7 @@ import logoutIcon from '../../images/logout.svg';
 import logoutIconBlack from '../../images/logout-black.svg';
 
 const Navigation = (props) => {
-  const [isLoggedIn] = React.useState(false);
+  const [isLoggedIn] = React.useState(true);
   const [getWidth, setGetWidth] = React.useState(window.innerWidth);
   const location = useLocation();
 
