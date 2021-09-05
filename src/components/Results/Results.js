@@ -2,35 +2,55 @@
 import React from 'react';
 import NewsCards from '../NewsCard/NewsCard';
 import CardWrapper from '../CardWrapper/CardWrapper';
+
 import './Results.css';
+import Preloader from '../Preloader/Preloader';
 
 const Results = (props) => {
-    console.log(props.articlesData);
+    console.log(props, 'handle save')
     const [indexShow, setIndexShow] = React.useState(3);
+    const maxLength = props.length;
 
     function handleLoadMore() {
         setIndexShow(indexShow + 3);
     }
+
     return (
-        <section className='results'>
-            <h2 className='results_title'>Search Results</h2>
+        <div className='results'>
+            <h2 className='results_title'>Search results</h2 >
 
-            <CardWrapper>
-                {props.articlesData.articles
-                    &&
-                    props.articlesData.articles.filter((element, i) => i < indexShow).map((article, index) => (
-                        <NewsCards
-                            key={index}
-                            element={article}
-                        />
-                    ))}
-            </CardWrapper>
+            {props.isLoading === true &&
+                <div className='results__preloader-wrapper'>
+                    <Preloader />
+                </div>
+            }
 
-            <div className='results__loadmore-wrapper'>
-                <button className='results__loadmore-button' onClick={() => handleLoadMore()}>Show more</button>
-            </div>
+            {props.articles &&
+                <>
+                    <CardWrapper>
+                        {props.articles.filter((element, i) => i < indexShow).map((article, index) => (
+                            <NewsCards
+                                key={index}
+                                element={article}
+                                isLoggedIn={props.isLoggedIn}
+                                handleSaveArticle={props.handleSaveArticle}
+                            />
+                        ))}
+                    </CardWrapper>
+                    <div className='results__loadmore-wrapper'
+                        style={{ display: indexShow >= maxLength ? 'none' : 'flex' }}
+                    >
+                        <button className='results__loadmore-button' onClick={() => handleLoadMore()}>
+                            Show more
+                        </button>
+                    </div>
+                </>
+            }
 
-        </section>
+
+
+        </div >
+
     );
 };
 

@@ -1,9 +1,8 @@
-body {
-	margin: 0;
-	min-height: 100vh;
-	background-color: #333;
-	
-	overflow: hidden;
+.preloader__wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
 .circle-preloader {
@@ -15,7 +14,7 @@ body {
 	
 	border-radius: 50%;
 	
-	position: absolute;
+	position: relative;
 	top: 0;
 	left: 0;
 	right: 0;

@@ -43,7 +43,15 @@
     height: 40px;
     top: 24px;
     left: 24px;
+}
 
+.card__login-warn {
+    width: 182px;
+    height: 40px;
+    top: 24px;
+    right: 69px;
+    justify-content: center;
+    align-items: center;
 }
 
 .card__button-mark {
@@ -55,6 +63,33 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.card__button-mark_not-loggedin {
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    right: 24px;
+    background-image: url('../../images/bookmark.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card__button-mark_not-loggedin:hover {
+    background-image: url('../../images/mark2.svg');
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.card__button-mark {
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    right: 24px;
+    background-image: url('../../images/bookmark.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 
 .card__button-mark:hover {
     background-image: url('../../images/mark2.svg');

@@ -5,10 +5,7 @@ import './SavedNews.css';
 const SavedNews = () => (
     <section className='saved-cards'>
         <CardWrapper>
-            <NewsCards></NewsCards>
-            <NewsCards></NewsCards>
-            <NewsCards></NewsCards>
-            <NewsCards></NewsCards>
+
         </CardWrapper>
     </section>
 );

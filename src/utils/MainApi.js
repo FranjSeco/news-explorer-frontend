@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+export const BASE_URL = 'http://localhost:3000';
 // signup
 export const register = (name, email, password) => fetch(`${BASE_URL}/signup`, {
   method: 'POST',
@@ -41,9 +41,9 @@ export const checkToken = (token) => fetch(`${BASE_URL}/users/me`, {
   .then((res) => res.json())
   .then((res) => res);
 
-// article createArticle
-export const createArticle = ({
-  keyword, title, text, date, source, link, image,
+// article saveArticle
+export const saveArticle = ({
+  keyword, title, text, date, source, link, image, token
 }) => fetch(`${BASE_URL}/articles`, {
   method: 'POST',
   headers: {
