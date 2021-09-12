@@ -6,7 +6,7 @@ const PopupWithForm = (props) => (
         <Overlay isOpen={props.isOpen}>
             <div className={'popup'}>
                 <button className="close-icon" onClick={props.onClose} type="button"> </button>
-                <form className={'popup__form form'} onSubmit={props.onSubmit} name={props.title}>
+                <form className={'popup__form form'} onSubmit={props.onSubmit} name={props.title} noValidate>
                     {
                         props.children
                     }

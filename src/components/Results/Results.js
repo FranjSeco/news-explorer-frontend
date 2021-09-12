@@ -7,9 +7,9 @@ import './Results.css';
 import Preloader from '../Preloader/Preloader';
 
 const Results = (props) => {
-    console.log(props, 'handle save')
+    // const [isSaved, setIsSaved] = React.useState('');
     const [indexShow, setIndexShow] = React.useState(3);
-    const maxLength = props.length;
+    const maxLength = props.articles.length;
 
     function handleLoadMore() {
         setIndexShow(indexShow + 3);
@@ -34,6 +34,9 @@ const Results = (props) => {
                                 element={article}
                                 isLoggedIn={props.isLoggedIn}
                                 handleSaveArticle={props.handleSaveArticle}
+                                savedArticles={props.savedArticles}
+                                handleDeleteArticle={props.handleDeleteArticle}
+                                tag={props.tag}
                             />
                         ))}
                     </CardWrapper>
@@ -46,8 +49,6 @@ const Results = (props) => {
                     </div>
                 </>
             }
-
-
 
         </div >
 

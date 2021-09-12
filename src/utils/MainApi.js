@@ -28,6 +28,8 @@ export const authorize = (email, password) => fetch(`${BASE_URL}/signin`, {
   })
   .catch((err) => console.log(err));
 
+// users/me userinfo
+
 // users/me token
 
 export const checkToken = (token) => fetch(`${BASE_URL}/users/me`, {
@@ -39,7 +41,9 @@ export const checkToken = (token) => fetch(`${BASE_URL}/users/me`, {
   },
 })
   .then((res) => res.json())
-  .then((res) => res);
+  .then((res) => {
+    return res;
+  });
 
 // article saveArticle
 export const saveArticle = ({
@@ -58,7 +62,7 @@ export const saveArticle = ({
   .then((res) => res.json());
 
 // article getAllArticles
-export const getArticles = () => fetch(`${BASE_URL}/articles`, {
+export const getArticles = (token) => fetch(`${BASE_URL}/articles`, {
   method: 'GET',
   headers: {
     Accept: 'application/json',
@@ -70,7 +74,7 @@ export const getArticles = () => fetch(`${BASE_URL}/articles`, {
 
 // article//:_id deleteArticle
 
-export const deleteArticle = ({ id }) => fetch(`${BASE_URL}/articles${id}`, {
+export const deleteArticle = (id, token) => fetch(`${BASE_URL}/articles/${id}`, {
   method: 'DELETE',
   headers: {
     Accept: 'application/json',

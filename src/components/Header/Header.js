@@ -40,7 +40,7 @@ const Header = (props) => {
         {getWidth > 700
           ? <div className='header__nav'>
             <Navigation
-            handlePopup={props}
+            handleOpenPopup={props.handleOpenPopup}
             isDisplayed={isDisplayed}
             isLoggedIn={props.isLoggedIn}
             handleLogOut={props.handleLogOut}
@@ -56,7 +56,7 @@ const Header = (props) => {
             <Overlay isOpen={isDisplayed}>
               <div className='header__nav'>
                 <Navigation
-                  handlePopup={props}
+                  handleOpenPopup={props.handleOpenPopup}
                   isLoggedIn={props.isLoggedIn}
                   handleLogOut={props.handleLogOut}
                 />

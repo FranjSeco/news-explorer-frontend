@@ -2,10 +2,11 @@
 import React from 'react';
 import './App.css';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import newsApi from '../../utils/NewsApi';
 import * as mainApi from '../../utils/MainApi';
-// import * as MainApi from '../../utils/MainApi'
+import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -13,7 +14,6 @@ import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Results from '../Results/Results';
 
-import Savednewsheader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNews from '../SavedNews/SavedNews';
 
 import SignIn from '../SignIn/SignIn';
@@ -27,21 +27,36 @@ function App() {
   const [signUpIsOpen, setSignUpIsOpen] = React.useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = React.useState(false);
 
-  const [token, setToken] = React.useState('');
+  // const [token, setToken] = React.useState('');
+  // const location = useLocation();
+  const history = useHistory();
 
-  const [articles, setArticles] = React.useState({});
+  const [savedArticles, setSavedArticles] = React.useState([]);
+  const [articles, setArticles] = React.useState([]);
   const [results, setResults] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [loadingSaved, setLoadingSaved] = React.useState(false);
   const [found, setFound] = React.useState(false);
-  const [articlesLength, setArticlesLength] = React.useState();
+  const [tag, setTag] = React.useState('');
+
+  const [signUpResponse, setSignUpResponse] = React.useState(false);
+  const [signInResponse, setSignInResponse] = React.useState(false);
+
+  const [currentUser, setCurrentUser] = React.useState({});
+  
+  React.useEffect(() => {
+    checkToken();
+    history.push('/');
+  }, [])
 
   function handleOpenPopup() {
-    setSignIsOpen(true);
+    setSignUpIsOpen(true);
   }
 
   function closePopup() {
     setSignIsOpen(false);
     setSignUpIsOpen(false);
+    setIsSuccessOpen(false);
   }
 
   function handleSignin() {
@@ -59,6 +74,18 @@ function App() {
     document.title = 'World News';
   }, []);
 
+  React.useEffect(() => {
+    if (localStorage.getItem('articles')) {
+      setIsLoading(true);
+      console.log('Articles found in local storage');
+      const localStorageArticles = JSON.parse(localStorage.getItem('articles'));
+      setResults(true);
+      setArticles(localStorageArticles);
+      setIsLoading(false);
+      history.push('/');
+    }
+  }, []);
+
   // DATE
   const d = new Date();
   const currentDate = (d.getFullYear()) + '-' + (d.getMonth() + 1) + '-' + d.getDate();
@@ -70,6 +97,7 @@ function App() {
   function handleSearch(request) {
     setIsLoading(true);
     setResults(true);
+    setTag(`${request}`);
     newsApi.getNews({
       request,
       sevenDaysAgo: sevenDays,
@@ -81,64 +109,85 @@ function App() {
           setFound(true);
         }
         localStorage.setItem('articles', JSON.stringify(res.articles));
+        localStorage.setItem('tag', request);
         setArticles(res.articles);
         setIsLoading(false);
-        setArticlesLength(res.articles.length);
       })
       .catch((err) => {
         console.log(`${err}`);
       });
   }
 
-
   // API SAVE ARTICLE
 
-  // function handleSaveArticle({
-  //   keyword, title, text, date, source, link, image,
-  // }) {
-  //   const jwt = localStorage.getItem('jwt');
-
-  //   mainApi.saveArticle({
-  //     keyword, title, text, date, source, link, image, token: jwt
-  //   })
-  //     .then(res => {
-  //       console.log(res, 'article saved');
-  //     })
-  // }
-
-  // console.log(JSON.parse(localStorage.getItem('articles')), 'this');
-
-  React.useEffect(() => {
-    if (localStorage.getItem('articles')) {
-      setIsLoading(true);
-      console.log('Articles found in local storage');
-      const localStorageArticles = JSON.parse(localStorage.getItem('articles'));
-      setResults(true);
-      setArticles(localStorageArticles);
-      setIsLoading(false);
+  function handleSaveArticle({
+    keyword, title, text, date, source, link, image,
+  }) {
+    const jwt = localStorage.getItem('jwt');
+    if (savedArticles.data.length >= 0) {
+      mainApi.saveArticle({
+        keyword, title, text, date, source, link, image, token: jwt
+      })
+        .then(res => {
+          handleGetSaved();
+          console.log(res, 'article saved');
+          return;
+        })
+    } else if (savedArticles.data.some(element => element.title === title)) {
+      console.log('This article is already saved')
     }
-  }, []);
+  }
+
+  // DELETE ARTICLE
+
+  function handleDeleteArticle(target) {
+    console.log(currentUser);
+    const jwt = localStorage.getItem('jwt');
+    const deleteArticle = savedArticles.data.find(element => element.title === target.title && element.owner === currentUser._id);
+    mainApi.deleteArticle(deleteArticle._id, jwt)
+      .then(res => {
+        handleGetSaved();
+        console.log(res, 'article deleted');
+        return
+      })
+  }
+
+  // GET SAVED ARTICLES
+
+  function handleGetSaved() {
+    setLoadingSaved(true);
+    const jwt = localStorage.getItem('jwt');
+    mainApi.getArticles(jwt)
+      .then(res => {
+        setSavedArticles(res);
+        console.log(res, 'these are the saved articles')
+        setLoadingSaved(false);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
   // API MAINAPI REGISTRATION
   function handleRegistration(name, email, password) {
     if (name && email && password) {
-      localStorage.setItem('userName', name);
       mainApi.register(name, email, password)
         .then(res => {
           if (res.message) {
             console.log(res.message);
+            setSignUpResponse(true);
           } else if (!res) {
-            console.log(res);
+            setSignUpResponse(true);
             return res;
           } else {
             console.log('Registation succesful')
+            setCurrentUser(res);
             setSignUpIsOpen(false);
+            setIsSuccessOpen(true);
             return res;
           }
         })
-        .then(setIsSuccessOpen(true))
         .catch((err) => {
-          setIsSuccessOpen(true);
           console.log(err);
         })
     }
@@ -151,10 +200,11 @@ function App() {
       .then(({ token }) => {
         if (token) {
           localStorage.setItem('jwt', token);
-          setToken(token);
           setLoggedIn(true);
           setSignIsOpen(false);
           return;
+        } else {
+          setSignInResponse(true);
         }
       })
       .catch(err => {
@@ -165,13 +215,16 @@ function App() {
   // API MAINAPI CHECKTOKEN
   function checkToken() {
     const jwt = localStorage.getItem('jwt');
+    const getTag = localStorage.getItem('tag');
+    setTag(`${getTag}`)
     if (jwt) {
       mainApi.checkToken(jwt)
         .then((res) => {
+          console.log('Getting info on refresh');
+          setCurrentUser(res.data);
+          handleGetSaved();
           if (!res.message) {
-            console.log(res, jwt, 'checking token');
             setLoggedIn(true);
-            setToken(jwt);
             return;
           }
           setLoggedIn(false);
@@ -187,65 +240,71 @@ function App() {
     setLoggedIn(false);
   }
 
-  React.useEffect(() => {
-    checkToken();
-  }, [])
-
-  // const [isLoading, setIsLoading] = React.useState(false);
-
   return (
     <div className="app">
-      <Header
-        onOpenPopup={handleOpenPopup}
-        isLoggedIn={isLoggedIn}
-        handleLogOut={handleLogOut}
-      />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header
+          handleOpenPopup={handleOpenPopup}
+          isLoggedIn={isLoggedIn}
+          handleLogOut={handleLogOut}
+        />
 
-      <Switch>
-        <Route path="/" exact>
-          <Main
-            onSearch={handleSearch}
-          />
-          {results
-            && <Results
-              articles={articles}
-              isLoading={isLoading}
-              length={articlesLength}
-              isLoggedIn={isLoggedIn}
-              // handleSaveArticle={handleSaveArticle}
-            />}
+        <Switch>
+          <Route path="/" exact>
+            <Main
+              onSearch={handleSearch}
+            />
+            {results
+              && <Results
+                articles={articles}
+                isLoading={isLoading}
+                isLoggedIn={isLoggedIn}
+                handleSaveArticle={handleSaveArticle}
+                savedArticles={savedArticles}
+                handleDeleteArticle={handleDeleteArticle}
+                tag={tag}
+              />}
 
-          {found && <NotFound />}
-          <About />
-        </Route>
+            {found && <NotFound />}
+            <About />
+          </Route>
 
-        <Route path="/saved-news" exact>
-          <Savednewsheader />
-          <SavedNews />
-        </Route>
+          <ProtectedRoute 
+            component={SavedNews}
+            loadingSaved={loadingSaved}
+            savedArticles={savedArticles}
+            isLoggedIn={isLoggedIn}
+            savedArticles={savedArticles}
+            exact path="/saved-news" 
+            isLoggedIn={isLoggedIn} 
+            handleDeleteArticle={handleDeleteArticle}
+            /> 
 
-      </Switch>
+        </Switch>
 
-      <SignUp
-        isOpen={signUpIsOpen}
-        openSignIn={handleSignin}
-        onClose={closePopup}
-        handleSignUp={handleRegistration}
-      />
-      <SignIn
-        isOpen={signInIsOpen}
-        openSignUp={handleSignup}
-        onClose={closePopup}
-        handleSignIn={handleAuthorization}
-      />
+        <SignUp
+          isOpen={signUpIsOpen}
+          openSignIn={handleSignin}
+          onClose={closePopup}
+          handleSignUp={handleRegistration}
+          signUpResponse={signUpResponse}
+        />
+        <SignIn
+          isOpen={signInIsOpen}
+          openSignUp={handleSignup}
+          onClose={closePopup}
+          handleSignIn={handleAuthorization}
+          signInResponse={signInResponse}
+        />
 
-      <Successful
-        isOpen={isSuccessOpen}
-        openSignIn={handleSignin}
-        onClose={closePopup}
-      />
+        <Successful
+          isOpen={isSuccessOpen}
+          openSignIn={handleSignin}
+          onClose={closePopup}
+        />
 
-      <Footer />
+        <Footer />
+      </CurrentUserContext.Provider>
     </div>
   );
 }
