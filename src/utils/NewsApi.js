@@ -1,11 +1,12 @@
 /* eslint-disable */
-// import apikey from "./constants";
+
+const { JWT_SECRET } = process.env;
+
 class NewsApi {
-  constructor({ baseUrl, headers, apikey }) {
+  constructor({ baseUrl, headers }) {
     // constructor body
     this._baseUrl = baseUrl;
     this._headers = headers;
-    // this._apikey = apikey;
   }
 
   // RESPONSE CHECK
@@ -16,9 +17,9 @@ class NewsApi {
   // GET https://newsapi.org/v2/everything?q=${request}&from=${7DaysAgo}&to=${today}&sortBy=popularity&pageSize=100&apiKey=${this._apikey}
   getNews({request, sevenDaysAgo, today}) {
     /* eslint-disable-next-line no-undef */
-    return fetch(`${this._baseUrl}?q=${request}&from=${sevenDaysAgo}&to=${today}&sortBy=popularity&pageSize=100&apiKey=37517964b8c6435cada5cb58d48e8abc`, {
+    return fetch(`${this._baseUrl}?q=${request}&from=${sevenDaysAgo}&to=${today}&sortBy=popularity&pageSize=100&apiKey=${JWT_SECRET}`, {
       headers: {
-        authorization: `Bearer 37517964b8c6435cada5cb58d48e8abc`,
+        authorization: `Bearer ${JWT_SECRET}`,
       },
     })
       .then(this._responseCheck);
@@ -28,7 +29,7 @@ class NewsApi {
 const newsApi = new NewsApi({
   baseUrl: 'https://newsapi.org/v2/everything',
   headers: {
-    'Authorization': `Bearer 37517964b8c6435cada5cb58d48e8abc`,
+    'Authorization': `Bearer ${JWT_SECRET}`,
     'content-type': 'application/json'
   }
 });

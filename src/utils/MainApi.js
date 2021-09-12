@@ -1,5 +1,6 @@
 /* eslint-disable */
 export const BASE_URL = 'http://localhost:3000';
+
 // signup
 export const register = (name, email, password) => fetch(`${BASE_URL}/signup`, {
   method: 'POST',
