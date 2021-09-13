@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = '37517964b8c6435cada5cb58d48e8abc';
 
 class NewsApi {
   constructor({ baseUrl, headers }) {
@@ -28,7 +28,7 @@ class NewsApi {
 
 const newsApi = new NewsApi({
   // baseUrl: 'https://newsapi.org/v2/everything',
-  baseUrl: 'https://nomoreparties.co/news/v2',
+  baseUrl: 'https://nomoreparties.co/news/v2/everything',
   headers: {
     'Authorization': `Bearer ${JWT_SECRET}`,
     'content-type': 'application/json'

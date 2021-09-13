@@ -1,6 +1,6 @@
 /* eslint-disable */
 // export const BASE_URL = 'http://localhost:3000';
-export const BASE_URL = 'api.world-news.students.nomoreparties.site';
+export const BASE_URL = 'https://api.world-news.students.nomoreparties.site';
 
 // signup
 export const register = (name, email, password) => fetch(`${BASE_URL}/signup`, {
