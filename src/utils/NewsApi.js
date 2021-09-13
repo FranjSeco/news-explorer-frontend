@@ -27,7 +27,8 @@ class NewsApi {
 }
 
 const newsApi = new NewsApi({
-  baseUrl: 'https://newsapi.org/v2/everything',
+  // baseUrl: 'https://newsapi.org/v2/everything',
+  baseUrl: 'https://nomoreparties.co/news/v2',
   headers: {
     'Authorization': `Bearer ${JWT_SECRET}`,
     'content-type': 'application/json'
