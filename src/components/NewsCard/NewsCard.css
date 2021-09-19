@@ -207,6 +207,15 @@
         top: 8px;
         right: 8px;
     }
+    .card__login-warn {
+        top: 8px;
+        right: 61px;
+        width: auto;
+    }
+    .card__button-mark_not-loggedin {
+        top: 8px;
+        right: 8px;
+    }
 
     .card__info-wrapper {
         width: 224px;
