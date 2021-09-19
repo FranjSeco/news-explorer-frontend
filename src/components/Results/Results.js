@@ -37,6 +37,7 @@ const Results = (props) => {
                                 savedArticles={props.savedArticles}
                                 handleDeleteArticle={props.handleDeleteArticle}
                                 tag={props.tag}
+                                openSignUp={props.openSignUp}
                             />
                         ))}
                     </CardWrapper>

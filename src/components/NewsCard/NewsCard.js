@@ -11,7 +11,8 @@ const NewsCards = ({
   handleSaveArticle,
   savedArticles,
   handleDeleteArticle,
-  tag
+  tag,
+  openSignUp
 }) => {
   const userInfo = React.useContext(CurrentUserContext);
   const location = useLocation();
@@ -54,6 +55,7 @@ const NewsCards = ({
               type='button'
               onMouseEnter={() => handleSignInTag()}
               onMouseLeave={() => handleSignInTag()}
+              onClick={() => openSignUp()}
             ></button>
           </>
         }

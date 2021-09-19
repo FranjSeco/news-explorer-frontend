@@ -74,6 +74,14 @@ function App() {
     document.title = 'World News';
   }, []);
 
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname === '/saved-news' && isLoggedIn === false) {
+      setSignIsOpen(true);
+    } 
+  }, [location]);
+
   React.useEffect(() => {
     if (localStorage.getItem('articles')) {
       setIsLoading(true);
@@ -263,6 +271,7 @@ function App() {
                 savedArticles={savedArticles}
                 handleDeleteArticle={handleDeleteArticle}
                 tag={tag}
+                openSignUp={handleSignup}
               />}
 
             {found && <NotFound />}
