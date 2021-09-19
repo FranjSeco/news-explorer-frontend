@@ -11,7 +11,8 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
@@ -21,6 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && scp -r ./build/* franjseco@world-news.students.nomoreparties.site:/home/franjseco/front-end",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ."

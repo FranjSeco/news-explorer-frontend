@@ -14,15 +14,19 @@
     text-decoration: none;
     align-self: center;
     color: #fff;
-    padding: 27px 0;
-    margin-right: 42px;
-    
+    padding: 27px 0 27px 0;
+    width: 68px;
+    text-align: center;
+    margin: 0 32px 0 0;
 }
 
 .navigation__home_black {
     color: #000;
 }
 
+.navigation__home_underlined {
+    border-bottom: 3px solid #fff;
+}
 
 .navigation__signin {
     width: 176px;
@@ -53,17 +57,20 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 24px;
-    display: flex;
-    align-self: center;
-    align-items: center;
-    text-align: center;
     color: #fff;
     text-decoration: none;
-    margin: 0 64px 0 34px;
+    margin: 0 32px 0 0;
+    padding: 27px 0 27px 0;
+    width: 178px;
+    text-align: center;
 }
 
 .navigation__saved-articles_black {
     color: #000;
+}
+
+.navigation__saved-articles_underlined {
+    border-bottom: 3px solid #000;
 }
 
 .navigation__logout {
@@ -76,8 +83,9 @@
     background-color: transparent;
     border: 1px solid #FFFFFF;
     border-radius: 100px;
-    width: 112px;
+    width: auto;
     height: 40px;
+    padding: 0 20px;
     align-self: center;
     display: flex;
     justify-content: center;
@@ -110,7 +118,8 @@
     display: flex;
     align-items: center;
     color: #FFFFFF;
-    width: 56px;
+    width: auto;
+    margin-right: 20px;
 }
 
 .navigation__logout-name_black {

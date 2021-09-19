@@ -43,7 +43,15 @@
     height: 40px;
     top: 24px;
     left: 24px;
+}
 
+.card__login-warn {
+    width: 182px;
+    height: 40px;
+    top: 24px;
+    right: 69px;
+    justify-content: center;
+    align-items: center;
 }
 
 .card__button-mark {
@@ -56,12 +64,39 @@
     background-repeat: no-repeat;
 }
 
+.card__button-mark_not-loggedin {
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    right: 24px;
+    background-image: url('../../images/bookmark.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card__button-mark_not-loggedin:hover {
+    background-image: url('../../images/mark2.svg');
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.card__button-mark {
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    right: 24px;
+    background-image: url('../../images/bookmark.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 .card__button-mark:hover {
     background-image: url('../../images/mark2.svg');
     cursor: pointer;
     opacity: 0.9;
 }
-.card__button-mark:active {
+.card__button-mark_active {
     background-image: url('../../images/mark3.svg');
 }
 
@@ -110,6 +145,8 @@
 
 .card__title {
     width: auto;
+    height: 100%;
+    max-height: 60px;
     margin: 0 0 16px 0;
     font-family: 'Roboto Slab';
     font-style: normal;
@@ -117,10 +154,13 @@
     font-size: 26px;
     line-height: 30px;
     color: #1A1B22;
+    overflow: hidden;
 }
 
 .card__text {
     width: auto;
+    height: 100%;
+    max-height: 110px;
     margin: 0 0 18px 0;
     font-family: 'Roboto';
     font-style: normal;
@@ -128,6 +168,7 @@
     font-size: 16px;
     line-height: 22px;
     color: #1A1B22;
+    overflow: hidden;
 }
 
 .card__source {
@@ -157,6 +198,15 @@
         width: 224px;
         height: 150px;
     }
+    .card__button-mark {
+        top: 8px;
+        right: 8px;
+    }
+
+    .card__button-delete {
+        top: 8px;
+        right: 8px;
+    }
 
     .card__info-wrapper {
         width: 224px;
@@ -171,6 +221,7 @@
         margin: 0 0 10px 0;
         font-size: 22px;
         line-height: 24px;
+        max-height: 72px;
     }
 
     .card__text {
@@ -230,9 +281,16 @@
         text-align: center;
         color: #000000;
     }
-    
-    
-    
+    .card__button-mark {
+        top: 24px;
+        right: 24px;
+    }
+
+    .card__button-delete {
+        top: 24px;
+        right: 24px;
+    }
+
     /* .card__delete-button {
         border: none;
         width: 40px;
@@ -269,8 +327,6 @@
         flex-direction: column;
         padding: 20px 24px 24px 24px;
     }
-    
-    
     
     .card__date {
         width: auto;
@@ -343,10 +399,16 @@
         left: 16px;
     }
 
-    .card__delete-button {
-        top: 16px;
-        right: 16px;
+    .card__button-mark {
+        top: 8px;
+        right: 8px;
     }
+
+    .card__button-delete {
+        top: 8px;
+        right: 8px;
+    }
+
 
     .card__info-wrapper {
         width: 288px;

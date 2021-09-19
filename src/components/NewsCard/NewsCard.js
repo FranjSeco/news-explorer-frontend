@@ -1,33 +1,99 @@
+/* eslint-disable */
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './NewsCard.css';
 
-// import trash from '../..images/trash.svg';
+const NewsCards = ({
+  element,
+  index,
+  isLoggedIn,
+  handleSaveArticle,
+  savedArticles,
+  handleDeleteArticle,
+  tag,
+  openSignUp
+}) => {
+  const userInfo = React.useContext(CurrentUserContext);
+  const location = useLocation();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const { publishedAt } = element;
+  const date = new Date(publishedAt);
+  const formatedDate = date.toLocaleDateString('en-US', options);
+  const [signTag, setSignTag] = React.useState('none');
+  const [isSaved, setIsSaved] = React.useState(false);
 
-const NewsCards = () => {
-  const [isLoggedIn] = React.useState(true);
+  function handleSignInTag() {
+    setSignTag(signTag === 'flex' ? 'none' : 'flex');
+  }
+
+  // console.log(element);
+
+  React.useEffect(() => {
+    if (savedArticles.data !== undefined) {
+      // console.log(userInfo, 'user');
+      // console.log(savedArticles.data, 'saved article');
+      setIsSaved(!!savedArticles.data.some((el) => el.title === element.title && el.owner === userInfo._id));
+      // console.log(isSaved);
+    }
+  }, [isSaved, setIsSaved, savedArticles]);
 
   return (
-        <div className='card'>
-            <div className='card__cover-wrapper' >
-                <img className='card__image' src={'https://images.unsplash.com/photo-1629831676333-8e33b2d7cdd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'} alt='news cover image' />
+    <div className='card' key={index}>
+      <div className='card__cover-wrapper' >
+        <img className='card__image' src={element.urlToImage || element.image} alt='news cover image' />
 
-                {isLoggedIn
-                && <button className='card__button card__button-tag'>Nature</button>
-                }
+        {isLoggedIn && location.pathname === '/saved-news'
+          && <button className='card__button card__button-tag'>{element.keyword}</button>
+        }
 
-                {isLoggedIn
-                  ? <button className='card__button card__button-delete'></button>
-                  : <button className='card__button  card__button-mark'></button>}
-            </div>
+        {!isLoggedIn
+          && <>
+            <button className='card__button card__login-warn' style={{ display: `${signTag}` }}>Sign in to save articles</button>
+            <button
+              className='card__button card__button-mark_not-loggedin'
+              type='button'
+              onMouseEnter={() => handleSignInTag()}
+              onMouseLeave={() => handleSignInTag()}
+              onClick={() => openSignUp()}
+            ></button>
+          </>
+        }
+        {isLoggedIn
+          && <>
+            <button
+              className={`card__button card__button-mark ${(isSaved) ? 'card__button-mark_active' : ''}`}
+              type='button'
+              onClick={() => {
+                (!isSaved) ? handleSaveArticle({
+                  keyword: tag,
+                  title: element.title,
+                  text: element.description,
+                  date: date.toLocaleDateString('en-US', options),
+                  source: element.source.name,
+                  link: element.url,
+                  image: element.urlToImage,
+                })
+                  : handleDeleteArticle(element);
+              }
+              }
+            ></button>
+          </>
+        }
 
-            <div className='card__info-wrapper'>
-                <p className='card__date'>November 4, 2020</p>
-                <h2 className='card__title'>Everyone Needs a Special 'Sit Spot' in Nature</h2>
-                <p className='card__text'>Ever since I read Richard Louv's influential book, "Last Child in the Woods," the idea of having a special "sit spot" has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...</p>
-                <p className='card__source'>treehugger</p>
-            </div>
+        {isLoggedIn && location.pathname === '/saved-news'
+          && <button className='card__button card__button-delete' onClick={() => handleDeleteArticle(element)}></button>
+        }
+      </div>
 
-        </div>
+      <div className='card__info-wrapper'>
+        <p className='card__date'>{ formatedDate || date}</p>
+        <h2 className='card__title'>{element.title}</h2>
+        <p className='card__text'>{element.description || element.text}</p>
+        <p className='card__source'>{element.source.name || element.source}</p>
+      </div>
+
+    </div>
   );
 };
 

@@ -6,7 +6,6 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 const Successful = (props) => (
         <PopupWithForm
-            // onSubmit={handleSubmit}
             name={'successful'}
             isOpen={props.isOpen}
             onClose={props.onClose}

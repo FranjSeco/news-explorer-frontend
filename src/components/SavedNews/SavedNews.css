@@ -12,6 +12,37 @@
     padding: 62px 0;
 }
 
+.saved-cards__preloader-wrapper {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.saved-cards__loadmore-wrapper {
+    background: transparent;
+    width: 100%;
+    padding: 64px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.saved-cards__loadmore-button {
+    background: #E8E8E8;
+    border-radius: 80px;
+    width: 240px;
+    height: 56px;
+    margin: 0 auto;
+    border: none;
+    align-self: center;
+}
+
+.saved-cards__loadmore-button:hover {
+    cursor: pointer;
+}
+
 
 @media screen and (max-width: 1280px) {
     .saved-cards_title {
@@ -23,5 +54,9 @@
 @media screen and (max-width: 480px) {
     .saved-cards {
         padding: 32px 0;
+    }
+
+    .saved-cards__loadmore-button {
+        width: 288px;
     }
 }
