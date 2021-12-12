@@ -36,12 +36,10 @@ const SignIn = (props) => {
   function OnEmailChange(e) {
     handleChange(e);
     setUserEmail(e.target.value);
-    console.log(userEmail, 'onchange email');
   }
   function OnPasswordChange(e) {
     handleChange(e);
     setUserPassword(e.target.value);
-    console.log(userPassword, 'onchange pw');
   }
 
   function onClosing() {
